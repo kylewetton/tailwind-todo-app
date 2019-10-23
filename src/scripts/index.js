@@ -73,20 +73,22 @@ class UserInput {
 
     addButton.addEventListener("click", e => {
       let val = document.querySelector("#js-input-field").value;
-      controller.createItem(val);
-      document.querySelector("#js-input-field").value = "";
+      if (val !== "") {
+        controller.createItem(val);
+        document.querySelector("#js-input-field").value = "";
+      }
     });
 
     filterAll.addEventListener("click", e => {
       controller.renderList(); // Defaults to show all items
-      filterActive.classList.remove("text-green-500");
-      filterAll.classList.add("text-green-500");
+      filterActive.classList.remove("text-green-500", "font-bold");
+      filterAll.classList.add("text-green-500", "font-bold");
     });
 
     filterActive.addEventListener("click", e => {
       controller.showActive();
-      filterActive.classList.add("text-green-500");
-      filterAll.classList.remove("text-green-500");
+      filterActive.classList.add("text-green-500", "font-bold");
+      filterAll.classList.remove("text-green-500", "font-bold");
     });
 
     clearAll.addEventListener("click", e => {
@@ -101,11 +103,11 @@ class UserInput {
         placeholder="Add new item..."
         type="text"
         id="js-input-field"
-        class="p-4 rounded bg-gray-900 text-white w-full shadow-inner outline-none"
+        class="p-4 pr-20 border-t-2 border-green-500 rounded bg-gray-900 text-white w-full shadow-inner outline-none"
       />
       <button
       id="js-add-item"
-        class="bg-green-400 hover:shadow-md text-gray-900 font-semibold py-2 px-4 absolute right-0 mr-2 rounded shadow focus:outline-none focus:shadow-none"
+        class="text-green-400 hover:text-green-300 bg-gray-900 font-semibold py-2 px-4 absolute right-0 mr-2 focus:outline-none"
       >
         Add
       </button>`;
